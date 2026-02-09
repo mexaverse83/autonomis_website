@@ -42,7 +42,7 @@ export const Navbar: React.FC = () => {
     { label: t.solutions, id: 'soluciones' },
     { label: t.methodology, id: 'metodologia' },
     { label: t.tools, id: 'herramientas' },
-    { label: t.agentTeams, id: 'agent-teams' }
+    { label: t.agentTeams, id: 'clawd-bot', isPage: true }
   ];
 
   return (
@@ -63,20 +63,30 @@ export const Navbar: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => {
-                  if (window.location.pathname !== '/') {
-                    window.location.href = `/#${item.id}`;
-                  } else {
-                    scrollToSection(item.id);
-                  }
-                }}
-                className={`text-sm transition-colors font-medium bg-transparent border-none cursor-pointer ${theme === 'dark' ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'
-                  }`}
-              >
-                {item.label}
-              </button>
+              item.isPage ? (
+                <Link
+                  key={item.label}
+                  to={`/${item.id}`}
+                  className={`text-sm transition-colors font-medium ${theme === 'dark' ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  key={item.label}
+                  onClick={() => {
+                    if (window.location.pathname !== '/') {
+                      window.location.href = `/#${item.id}`;
+                    } else {
+                      scrollToSection(item.id);
+                    }
+                  }}
+                  className={`text-sm transition-colors font-medium bg-transparent border-none cursor-pointer ${theme === 'dark' ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'
+                    }`}
+                >
+                  {item.label}
+                </button>
+              )
             ))}
             <Link
               to="/blog"
@@ -157,6 +167,18 @@ export const Navbar: React.FC = () => {
         } backdrop-blur-lg`}>
           <div className="py-4 px-6 space-y-1">
             {navItems.map((item) => (
+              item.isPage ? (
+                <Link
+                  key={item.label}
+                  to={`/${item.id}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block w-full text-left py-3 px-4 rounded-lg text-base font-medium transition-colors ${
+                    theme === 'dark' ? 'text-zinc-300 hover:bg-zinc-800' : 'text-zinc-700 hover:bg-zinc-100'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
               <button
                 key={item.label}
                 onClick={() => {
@@ -174,6 +196,7 @@ export const Navbar: React.FC = () => {
               >
                 {item.label}
               </button>
+              )
             ))}
             <Link
               to="/blog"

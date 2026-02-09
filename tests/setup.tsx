@@ -1,0 +1,55 @@
+import '@testing-library/jest-dom/vitest'
+import { vi } from 'vitest'
+
+// Mock framer-motion to avoid animation issues in tests
+vi.mock('framer-motion', () => ({
+  motion: new Proxy({}, {
+    get: (_target, prop) => {
+      // Return a component that renders the element type
+      return ({ children, ...props }: any) => {
+        const { initial, animate, whileInView, viewport, transition, whileHover, whileTap, ...domProps } = props
+        const Component = typeof prop === 'string' ? prop : 'div'
+        return <Component {...domProps}>{children}</Component>
+      }
+    }
+  }),
+  AnimatePresence: ({ children }: any) => <>{children}</>,
+}))
+
+// Mock IntersectionObserver
+class MockIntersectionObserver {
+  observe = vi.fn()
+  unobserve = vi.fn()
+  disconnect = vi.fn()
+}
+Object.defineProperty(window, 'IntersectionObserver', {
+  writable: true,
+  value: MockIntersectionObserver,
+})
+
+// Mock scrollIntoView
+Element.prototype.scrollIntoView = vi.fn()
+
+// Mock localStorage
+const localStorageMock = {
+  getItem: vi.fn(() => null),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+}
+Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+
+// Mock matchMedia
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+})
