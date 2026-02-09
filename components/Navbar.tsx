@@ -16,12 +16,14 @@ export const Navbar: React.FC = () => {
       solutions: 'Soluciones',
       methodology: 'Metodología',
       tools: 'Herramientas',
+      agentTeams: 'Equipos IA',
       demo: 'Agendar Llamada'
     },
     en: {
       solutions: 'Solutions',
       methodology: 'Methodology',
       tools: 'Tools',
+      agentTeams: 'AI Teams',
       demo: 'Book a Call'
     }
   };
@@ -39,7 +41,8 @@ export const Navbar: React.FC = () => {
   const navItems = [
     { label: t.solutions, id: 'soluciones' },
     { label: t.methodology, id: 'metodologia' },
-    { label: t.tools, id: 'herramientas' }
+    { label: t.tools, id: 'herramientas' },
+    { label: t.agentTeams, id: 'agent-teams' }
   ];
 
   return (
