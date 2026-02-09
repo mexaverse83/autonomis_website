@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomis - AI Agents for Enterprise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Reset & Base */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-primary: #000000;
+      --bg-secondary: #09090b;
+      --bg-card: #18181b;
+      --border-primary: #27272a;
+      --border-secondary: #3f3f46;
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent-blue: #60a5fa;
+      --accent-violet: #8b5cf6;
+      --accent-indigo: #818cf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-red: #f87171;
+      --gradient-primary: linear-gradient(135deg, #60a5fa 0%, #8b5cf6 100%);
+      --gradient-hero: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Page Structure */
+    .page {
+      width: 8.5in;
+      height: 11in;
+      max-height: 11in;
+      padding: 0.75in;
+      margin: 0 auto;
+      background: var(--bg-primary);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page:not(:first-child) {
+      page-break-before: always;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .gradient-text {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Components */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.875rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-primary);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-primary);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 0.75rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    /* Grid Background */
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 70%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Glowing Orb */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .orb-purple {
+      background: rgba(139, 92, 246, 0.25);
+    }
+
+    .orb-blue {
+      background: rgba(96, 165, 250, 0.2);
+    }
+
+    /* ===== PAGE 1: COVER ===== */
+    .cover-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
+    }
+
+    .cover-headline {
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-subheadline {
+      font-size: 1.375rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet), var(--accent-indigo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+    }
+
+    .cover-description {
+      max-width: 500px;
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+
+    .trust-indicators {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-primary);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .trust-item svg {
+      color: var(--accent-indigo);
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== PAGE 2: PROBLEM & SOLUTION ===== */
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .problem-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .problem-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.875rem;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+    }
+
+    .problem-list .icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .solution-section {
+      margin-bottom: 2rem;
+    }
+
+    .doe-intro {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .doe-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .doe-components {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .doe-component {
+      flex: 1;
+      text-align: center;
+    }
+
+    .doe-letter {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+    }
+
+    .doe-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .doe-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ===== PAGE 3: FRAMEWORK DEEP DIVE ===== */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-primary);
+      border-radius: 0.875rem;
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .pillar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 0.625rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.875rem;
+    }
+
+    .pillar-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.375rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .tech-stack {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-primary);
+    }
+
+    .tech-stack-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-badge {
+      padding: 0.375rem 0.75rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-primary);
+      border-radius: 0.5rem;
+      font-size: 0.8125rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-secondary);
+    }
+
+    /* ===== PAGE 4: CTA ===== */
+    .cta-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cta-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-primary);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    .cta-offer-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .cta-includes {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      margin-bottom: 0.625rem;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+    }
+
+    .cta-includes svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--accent-emerald);
+    }
+
+    .cta-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: var(--gradient-hero);
+      border: none;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .cta-url {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .cta-url a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    .founder-section {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-primary);
+      text-align: center;
+    }
+
+    .founder-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .founder-title {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-info a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    /* Print Styles */
+    @media print {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg-primary) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .page {
+        margin: 0;
+        padding: 0.6in;
+        height: 11in;
+        max-height: 11in;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      .page:not(:first-child) {
+        page-break-before: always;
+      }
+
+      .page:last-child {
+        page-break-after: avoid;
+      }
+
+      .orb,
+      .grid-bg {
+        display: block !important;
+      }
+    }
+
+    @page {
+      size: letter;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== PAGE 1: COVER ===== -->
+  <div class="page">
+    <div class="grid-bg"></div>
+    <div class="orb orb-purple"
+      style="width: 400px; height: 400px; top: -100px; left: 50%; transform: translateX(-50%);"></div>
+    <div class="orb orb-blue" style="width: 300px; height: 300px; bottom: 100px; right: -100px;"></div>
+
+    <div class="cover-content">
+      <div class="logo">AUTONOMIS</div>
+
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Enterprise AI Solutions
+      </div>
+
+      <h1 class="cover-headline">
+        AI Agents for Enterprise
+      </h1>
+
+      <p class="cover-subheadline">
+        Built for Production, Not for Demos
+      </p>
+
+      <p class="cover-description">
+        We deploy scalable, observable, and governed AI agents, ready to operate within real business processes.
+      </p>
+
+      <div class="trust-indicators">
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22,4 12,14.01 9,11.01"></polyline>
+          </svg>
+          Built-in Evaluation
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          Full Traceability
+        </div>
+        <div class="trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Control & Compliance
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>autonomis.co</span>
+      <span>2025</span>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 2: PROBLEM & SOLUTION ===== -->
+  <div class="page">
+    <div class="grid-bg"></div>
+
+    <div class="section-header">
+      <div class="badge" style="margin-bottom: 1rem;">
+        <span class="badge-dot" style="background: var(--accent-amber);"></span>
+        The Challenge
+      </div>
+      <h2>Why Most AI Projects<br><span class="gradient-text">Never Reach Production</span></h2>
+    </div>
+
+    <div class="problem-section">
+      <p style="margin-bottom: 1rem;">
+        Enterprises invest heavily in AI experimentation, but few projects survive the journey from POC to production.
+        The gap between "it works in a demo" and "it runs reliably at scale" is where most initiatives fail.
+      </p>
+
+      <ul class="problem-list">
+        <li>
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+          <span><strong style="color: var(--text-primary);">No Observability:</strong> Black-box LLM calls make
+            debugging impossible and costs unpredictable</span>
+        </li>
+        <li>
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+          <span><strong style="color: var(--text-primary);">Missing Guardrails:</strong> No protection against
+            hallucinations, prompt injection, or PII exposure</span>
+        </li>
+        <li>
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+          <span><strong style="color: var(--text-primary);">Unvalidated Outputs:</strong> No systematic way to ensure
+            response quality before customer delivery</span>
+        </li>
+        <li>
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="15" y1="9" x2="9" y2="15"></line>
+            <line x1="9" y1="9" x2="15" y2="15"></line>
+          </svg>
+          <span><strong style="color: var(--text-primary);">Vendor Lock-in:</strong> Tightly coupled architectures that
+            can't adapt as better models emerge</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="solution-section">
+      <div class="badge" style="margin-bottom: 1rem;">
+        <span class="badge-dot"></span>
+        Our Approach
+      </div>
+      <h2>The DOE Framework</h2>
+      <p>
+        A proven methodology for deploying AI agents that are governed from day one, fully observable, and built on
+        modular architecture that grows with your needs.
+      </p>
+
+      <div class="doe-intro">
+        <div class="doe-components">
+          <div class="doe-component">
+            <div class="doe-letter" style="color: var(--accent-blue);">D</div>
+            <div class="doe-label">Directives</div>
+            <div class="doe-desc">Markdown-driven behavior</div>
+          </div>
+          <div class="doe-component">
+            <div class="doe-letter" style="color: var(--accent-violet);">O</div>
+            <div class="doe-label">Orchestration</div>
+            <div class="doe-desc">Multi-agent coordination</div>
+          </div>
+          <div class="doe-component">
+            <div class="doe-letter" style="color: var(--accent-emerald);">E</div>
+            <div class="doe-label">Execution</div>
+            <div class="doe-desc">Production infrastructure</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 3: FRAMEWORK DEEP DIVE ===== -->
+  <div class="page">
+    <div class="grid-bg"></div>
+
+    <div class="section-header">
+      <div class="badge" style="margin-bottom: 1rem;">
+        <span class="badge-dot" style="background: var(--accent-violet);"></span>
+        Framework Deep Dive
+      </div>
+      <h2>Enterprise-Grade<br><span class="gradient-text">Agent Architecture</span></h2>
+      <p>Every component designed for reliability, observability, and governance at scale.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+          </svg>
+        </div>
+        <div class="pillar-title">Autonomous Orchestration</div>
+        <div class="pillar-desc">Multi-agent teams (Triage → Response → Escalation) that resolve complex cases without
+          human intervention.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="pillar-title">Safety Guardrails</div>
+        <div class="pillar-desc">Block prompt injections, sanitize PII, and validate every response before it reaches
+          customers.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4"></path>
+            <path d="M12 8h.01"></path>
+          </svg>
+        </div>
+        <div class="pillar-title">LLM-as-Judge Evaluation</div>
+        <div class="pillar-desc">Automatic quality verification: relevance, tone, completeness, and actionability
+          scoring on every output.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+          </svg>
+        </div>
+        <div class="pillar-title">Complete Observability</div>
+        <div class="pillar-desc">Full pipeline traces: execution times, tokens consumed, costs, and performance metrics
+          in real-time.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <div class="pillar-title">Modular Architecture</div>
+        <div class="pillar-desc">Swap LLMs (Gemini, OpenAI, Claude), CRMs, or evaluation metrics without changing
+          business logic.</div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14,2 14,8 20,8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+        </div>
+        <div class="pillar-title">Directive-Driven Behavior</div>
+        <div class="pillar-desc">Non-engineers can edit agent behavior through simple markdown files—no code changes
+          required.</div>
+      </div>
+    </div>
+
+    <div class="tech-stack">
+      <div class="tech-stack-title">Built With Industry-Leading Tools</div>
+      <div class="tech-badges">
+        <span class="tech-badge">LangGraph</span>
+        <span class="tech-badge">CrewAI</span>
+        <span class="tech-badge">Langfuse</span>
+        <span class="tech-badge">DeepEval</span>
+        <span class="tech-badge">Guardrails AI</span>
+        <span class="tech-badge">Gemini / OpenAI / Claude</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 4: CTA ===== -->
+  <div class="page">
+    <div class="grid-bg"></div>
+    <div class="orb orb-purple" style="width: 350px; height: 350px; bottom: -100px; left: -100px;"></div>
+    <div class="orb orb-blue" style="width: 300px; height: 300px; top: 50px; right: -100px;"></div>
+
+    <div class="cta-content">
+      <div class="cta-header">
+        <div class="badge" style="margin-bottom: 1rem;">
+          <span class="badge-dot"></span>
+          Immediate Availability
+        </div>
+        <h2>Let's Talk About Your<br><span class="gradient-text">AI Strategy</span></h2>
+      </div>
+
+      <div class="cta-card">
+        <div class="cta-offer-title">Free 30-Minute Strategy Call</div>
+
+        <ul class="cta-includes">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22,4 12,14.01 9,11.01"></polyline>
+            </svg>
+            <span><strong style="color: var(--text-primary);">Needs Analysis</strong> — Evaluate AI fit for your
+              processes</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22,4 12,14.01 9,11.01"></polyline>
+            </svg>
+            <span><strong style="color: var(--text-primary);">Process Audit</strong> — Map and identify automation
+              opportunities</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22,4 12,14.01 9,11.01"></polyline>
+            </svg>
+            <span><strong style="color: var(--text-primary);">Recommendations</strong> — Clear next steps tailored to
+              your goals</span>
+          </li>
+        </ul>
+
+        <a href="https://cal.com/bernardo-garza-nlu8ko/30-min-meeting-english" target="_blank" class="cta-button"
+          style="text-decoration: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Book Your Call
+        </a>
+
+        <div class="cta-url">
+          <a
+            href="https://cal.com/bernardo-garza-nlu8ko/30-min-meeting-english">cal.com/bernardo-garza-nlu8ko/30-min-meeting-english</a>
+        </div>
+      </div>
+
+      <div class="founder-section">
+        <div class="founder-name">Bernardo Garza</div>
+        <div class="founder-title">Founder, Autonomis</div>
+        <div class="contact-info">
+          <span>🌐 <a href="https://autonomis.co">autonomis.co</a></span>
+          <span>📧 <a href="mailto:bernardo@autonomis.co">bernardo@autonomis.co</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
