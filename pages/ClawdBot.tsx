@@ -39,21 +39,24 @@ export const ClawdBot: React.FC = () => {
       },
       hero: {
         badge: 'Servicio Especializado',
-        headline: 'Sistemas Multi-Agente',
-        headlineAccent: 'Diseñados para Producción',
-        subheadline: 'Desplegamos, configuramos y gestionamos equipos de agentes IA que trabajan juntos — con la arquitectura correcta desde el día uno.',
+        headline: 'Tu Equipo de IA,',
+        headlineAccent: 'Desplegado.',
+        subheadline: 'Los frameworks te dan bloques de construcción. OpenClaw te da el edificio completo.',
+        description: 'Desplegamos, configuramos y gestionamos equipos de agentes IA que trabajan juntos — con la arquitectura correcta desde el día uno.',
         cta: 'Solicitar Consultoría',
       },
       whatIs: {
-        title: '¿Qué es clawd.bot?',
-        description: 'clawd.bot (powered by OpenClaw) es una plataforma que permite desplegar equipos de agentes IA especializados que colaboran entre sí. Cada agente tiene su propio rol, herramientas y memoria — coordinados automáticamente para resolver problemas complejos.',
+        title: '¿Qué es OpenClaw?',
+        description: 'OpenClaw es la plataforma detrás de clawd.bot — permite desplegar equipos completos de agentes IA especializados que colaboran entre sí. No es un chatbot individual — son equipos de agentes con roles, herramientas y memoria, coordinados automáticamente.',
         points: [
-          'Agentes especializados que trabajan como un equipo real',
-          'Comunicación inter-agente en tiempo real',
-          'Memoria persistente — los agentes aprenden y recuerdan',
+          'Equipos multi-agente, no chatbots individuales',
+          'Cualquier canal — WhatsApp, Telegram, Discord, Slack, iMessage',
+          'Memoria persistente entre sesiones — los agentes aprenden y recuerdan',
+          'Auto-hospedado — soberanía total de datos',
+          'Setup en 5 minutos — despliega en cualquier lugar',
           'Habilidades modulares que se adaptan a cualquier caso de uso',
-          'Monitoreo y observabilidad completa',
         ],
+        differentiator: 'CrewAI te da el framework. Nosotros te damos la plataforma.',
       },
       expertise: {
         title: 'Nuestra Experiencia',
@@ -125,21 +128,24 @@ export const ClawdBot: React.FC = () => {
       },
       hero: {
         badge: 'Specialized Service',
-        headline: 'Multi-Agent Systems',
-        headlineAccent: 'Built for Production',
-        subheadline: 'We deploy, configure, and manage AI agent teams that work together — with the right architecture from day one.',
+        headline: 'Your AI Team,',
+        headlineAccent: 'Deployed.',
+        subheadline: 'Frameworks give you building blocks. OpenClaw gives you the building.',
+        description: 'We deploy, configure, and manage AI agent teams that work together — with the right architecture from day one.',
         cta: 'Request Consultation',
       },
       whatIs: {
-        title: 'What is clawd.bot?',
-        description: 'clawd.bot (powered by OpenClaw) is a platform for deploying teams of specialized AI agents that collaborate with each other. Each agent has its own role, tools, and memory — automatically coordinated to solve complex problems.',
+        title: 'What is OpenClaw?',
+        description: 'OpenClaw is the platform behind clawd.bot — it deploys complete teams of specialized AI agents that collaborate with each other. Not a single chatbot — full agent teams with roles, tools, and memory, automatically coordinated.',
         points: [
-          'Specialized agents that work as a real team',
-          'Real-time inter-agent communication',
-          'Persistent memory — agents learn and remember',
+          'Multi-agent teams, not individual chatbots',
+          'Any channel — WhatsApp, Telegram, Discord, Slack, iMessage',
+          'Persistent memory across sessions — agents learn and remember',
+          'Self-hosted — full data sovereignty',
+          '5-minute setup — deploy anywhere',
           'Modular skills that adapt to any use case',
-          'Complete monitoring and observability',
         ],
+        differentiator: 'CrewAI gives you the framework. We give you the platform.',
       },
       expertise: {
         title: 'Our Expertise',
@@ -270,8 +276,11 @@ export const ClawdBot: React.FC = () => {
               {t.hero.headlineAccent}
             </span>
           </h1>
-          <p className={`text-lg sm:text-xl max-w-2xl mx-auto mb-8 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
-            {t.hero.subheadline}
+          <p className={`text-lg sm:text-xl max-w-2xl mx-auto mb-4 italic font-medium ${isDark ? 'text-indigo-300' : 'text-indigo-600'}`}>
+            "{t.hero.subheadline}"
+          </p>
+          <p className={`text-base max-w-2xl mx-auto mb-8 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+            {t.hero.description}
           </p>
           <Button variant="primary" size="lg" onClick={scrollToContact}>
             {t.hero.cta} <ArrowRight className="w-4 h-4 ml-2" />
@@ -292,7 +301,7 @@ export const ClawdBot: React.FC = () => {
             <p className={`text-lg mb-8 leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
               {t.whatIs.description}
             </p>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mb-8">
               {t.whatIs.points.map((point, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle className={`w-5 h-5 mt-0.5 shrink-0 ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`} />
@@ -300,6 +309,11 @@ export const ClawdBot: React.FC = () => {
                 </li>
               ))}
             </ul>
+            <div className={`p-5 rounded-xl border ${isDark ? 'bg-indigo-500/5 border-indigo-500/20' : 'bg-indigo-50 border-indigo-200'}`}>
+              <p className={`text-base font-medium italic ${isDark ? 'text-indigo-300' : 'text-indigo-700'}`}>
+                "{t.whatIs.differentiator}"
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>

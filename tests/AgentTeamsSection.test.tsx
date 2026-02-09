@@ -1,15 +1,19 @@
 /**
- * QA Tests — AgentTeamsSection Component
- * Tests: rendering, bilingual content, theme support, pricing, navigation
+ * QA Tests — ClawdBot Page + Home Page Regression
+ * Repo: mexaverse83/autonomis_website (commit 794de04)
  */
 
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 import React from 'react'
-import { AgentTeamsSection } from '../components/AgentTeamsSection'
+import { ClawdBot } from '../pages/ClawdBot'
 import { LanguageProvider } from '../context/LanguageContext'
 import { ThemeProvider } from '../context/ThemeContext'
+
+// Mock react-helmet-async
+vi.mock('react-helmet-async', () => ({
+  Helmet: ({ children }: any) => <div data-testid="helmet">{children}</div>,
+}))
 
 function renderWithProviders(ui: React.ReactElement) {
   return render(
@@ -21,235 +25,143 @@ function renderWithProviders(ui: React.ReactElement) {
   )
 }
 
-describe('AgentTeamsSection', () => {
-  describe('Spanish (default language)', () => {
-    it('renders section with correct id for nav scroll', () => {
-      const { container } = renderWithProviders(<AgentTeamsSection />)
-      const section = container.querySelector('#agent-teams')
-      expect(section).toBeInTheDocument()
-    })
-
-    it('renders badge "Nuevo Servicio"', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Nuevo Servicio')).toBeInTheDocument()
-    })
-
-    it('renders headline', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Equipos de Agentes IA')).toBeInTheDocument()
-      expect(screen.getByText('Listos para Trabajar')).toBeInTheDocument()
-    })
-
-    it('renders subheadline', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText(/Construimos un equipo de agentes IA/)).toBeInTheDocument()
-    })
-
-    it('renders description', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText(/Desplegamos equipos completos de agentes IA/)).toBeInTheDocument()
-    })
-
-    it('renders differentiator quote', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText(/CrewAI te da el framework/)).toBeInTheDocument()
-    })
-
-    it('renders all 5 agent cards', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Coordinador')).toBeInTheDocument()
-      expect(screen.getByText('Desarrollador')).toBeInTheDocument()
-      expect(screen.getByText('Investigador')).toBeInTheDocument()
-      expect(screen.getByText('Clasificador de Email')).toBeInTheDocument()
-      expect(screen.getByText('QA Engineer')).toBeInTheDocument()
-    })
-
-    it('renders agent roles', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText(/Gestión de equipo, standups diarios/)).toBeInTheDocument()
-      expect(screen.getByText(/Código full-stack, Git, CI\/CD/)).toBeInTheDocument()
-      expect(screen.getByText(/Testing automatizado, escaneo de seguridad/)).toBeInTheDocument()
-    })
-
-    it('renders "Cómo Funciona" section with 3 steps', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Cómo Funciona')).toBeInTheDocument()
-      expect(screen.getByText('Despliegue Docker')).toBeInTheDocument()
-      expect(screen.getByText('Comunicación Inter-agente')).toBeInTheDocument()
-      expect(screen.getByText('Dashboard en Tiempo Real')).toBeInTheDocument()
-    })
-
-    it('renders stats section', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Lo Que Hemos Logrado')).toBeInTheDocument()
-      expect(screen.getByText('5')).toBeInTheDocument()
-      expect(screen.getByText('133')).toBeInTheDocument()
-      expect(screen.getByText('<1 día')).toBeInTheDocument()
-      expect(screen.getByText('24/7')).toBeInTheDocument()
-      expect(screen.getByText('Agentes especializados')).toBeInTheDocument()
-      expect(screen.getByText('Tests automatizados')).toBeInTheDocument()
-    })
-
-    it('renders 3 pricing tiers', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Planes de Servicio')).toBeInTheDocument()
-      expect(screen.getByText('Starter')).toBeInTheDocument()
-      expect(screen.getByText('Professional')).toBeInTheDocument()
-      expect(screen.getByText('Enterprise')).toBeInTheDocument()
-    })
-
-    it('renders pricing amounts', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('$997')).toBeInTheDocument()
-      expect(screen.getByText('$2,997')).toBeInTheDocument()
-      expect(screen.getByText('$7,997+')).toBeInTheDocument()
-    })
-
-    it('renders tier features', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Coordinador + 2 especialistas')).toBeInTheDocument()
-      expect(screen.getByText('Equipo completo de 5 agentes')).toBeInTheDocument()
-      expect(screen.getByText('Agentes personalizados')).toBeInTheDocument()
-    })
-
-    it('marks Professional tier as Popular', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('Popular')).toBeInTheDocument()
-    })
-
-    it('renders CTA buttons', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      const ctaButtons = screen.getAllByText('Solicitar Demo')
-      expect(ctaButtons.length).toBeGreaterThanOrEqual(4) // 3 tier buttons + 1 main CTA
-    })
-
-    it('renders "Powered by clawd.bot" link', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      const link = screen.getByText('clawd.bot')
-      expect(link).toBeInTheDocument()
-      expect(link.closest('a')).toHaveAttribute('href', 'https://clawd.bot')
-      expect(link.closest('a')).toHaveAttribute('target', '_blank')
-    })
+describe('ClawdBot Page — Spanish (default)', () => {
+  it('renders hero badge', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('Servicio Especializado')).toBeInTheDocument()
   })
 
-  describe('English language', () => {
-    function renderInEnglish() {
-      // Render with provider then toggle language
-      const TestWrapper = () => {
-        const [lang, setLang] = React.useState<'es' | 'en'>('en')
-        return (
-          <ThemeProvider>
-            <LanguageProviderOverride language={lang}>
-              <AgentTeamsSection />
-            </LanguageProviderOverride>
-          </ThemeProvider>
-        )
-      }
-      return render(<TestWrapper />)
-    }
-
-    // Custom provider that accepts language prop
-    function LanguageProviderOverride({ children, language }: { children: React.ReactNode, language: 'es' | 'en' }) {
-      const ctx = {
-        language,
-        setLanguage: vi.fn(),
-        toggleLanguage: vi.fn(),
-      }
-      const LanguageContext = React.createContext(ctx)
-      // We need to use the actual context from the module
-      // Instead, let's test via the actual toggle mechanism
-      return null // placeholder
-    }
-
-    // Since we can't easily override context from outside, test English content presence
-    // by checking the component has both language sets defined
-    it('component contains English translations', () => {
-      // Just verify the Spanish defaults render (English tested via integration)
-      renderWithProviders(<AgentTeamsSection />)
-      // Verify the component renders without error
-      expect(screen.getByText('Equipos de Agentes IA')).toBeInTheDocument()
-    })
+  it('renders hero headline', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('Sistemas Multi-Agente')).toBeInTheDocument()
+    expect(screen.getByText('Diseñados para Producción')).toBeInTheDocument()
   })
 
-  describe('Structure and Accessibility', () => {
-    it('section has proper id attribute', () => {
-      const { container } = renderWithProviders(<AgentTeamsSection />)
-      expect(container.querySelector('section#agent-teams')).toBeInTheDocument()
-    })
-
-    it('renders step numbers 1, 2, 3', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      expect(screen.getByText('1')).toBeInTheDocument()
-      expect(screen.getByText('2')).toBeInTheDocument()
-      expect(screen.getByText('3')).toBeInTheDocument()
-    })
-
-    it('external links have rel="noopener noreferrer"', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      const link = screen.getByText('clawd.bot').closest('a')
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer')
-    })
-
-    it('agent cards have gradient backgrounds', () => {
-      const { container } = renderWithProviders(<AgentTeamsSection />)
-      const gradientDivs = container.querySelectorAll('[class*="bg-gradient-to-br"]')
-      expect(gradientDivs.length).toBeGreaterThanOrEqual(5) // 5 agent card icons
-    })
-
-    it('pricing tier period labels are correct', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      const periods = screen.getAllByText('/mes')
-      expect(periods.length).toBe(3)
-    })
+  it('renders hero subheadline', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText(/Desplegamos, configuramos y gestionamos/)).toBeInTheDocument()
   })
 
-  describe('Security', () => {
-    it('no hardcoded API keys in component', () => {
-      // Read the actual file content for security scanning
-      const fs = require('fs')
-      const content = fs.readFileSync('./components/AgentTeamsSection.tsx', 'utf-8')
-      expect(content).not.toMatch(/sk-proj-[A-Za-z0-9_-]{20,}/)
-      expect(content).not.toMatch(/sk-ant-[A-Za-z0-9_-]{20,}/)
-      expect(content).not.toMatch(/eyJhbGciOi[A-Za-z0-9_-]{50,}/)
-      expect(content).not.toMatch(/password\s*[:=]\s*['"][^'"]{8,}['"]/)
-    })
+  it('renders hero CTA button', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('Solicitar Consultoría')).toBeInTheDocument()
+  })
 
-    it('external links use target="_blank" with noopener', () => {
-      renderWithProviders(<AgentTeamsSection />)
-      const externalLinks = screen.getByText('clawd.bot').closest('a')!
-      expect(externalLinks.getAttribute('target')).toBe('_blank')
-      expect(externalLinks.getAttribute('rel')).toContain('noopener')
-    })
+  it('renders "What is clawd.bot" section', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('¿Qué es clawd.bot?')).toBeInTheDocument()
+    expect(screen.getByText(/clawd\.bot \(powered by OpenClaw\)/)).toBeInTheDocument()
+  })
+
+  it('renders 5 "what is" bullet points', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('Agentes especializados que trabajan como un equipo real')).toBeInTheDocument()
+    expect(screen.getByText('Comunicación inter-agente en tiempo real')).toBeInTheDocument()
+    expect(screen.getByText(/Memoria persistente/)).toBeInTheDocument()
+    expect(screen.getByText(/Habilidades modulares/)).toBeInTheDocument()
+    expect(screen.getByText(/Monitoreo y observabilidad completa/)).toBeInTheDocument()
+  })
+
+  it('renders "Our Expertise" section with 6 items', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('Nuestra Experiencia')).toBeInTheDocument()
+    expect(screen.getByText('Diseño de Arquitectura')).toBeInTheDocument()
+    expect(screen.getByText('Coordinación de Agentes')).toBeInTheDocument()
+    expect(screen.getByText('Comunicación Inter-Agente')).toBeInTheDocument()
+    expect(screen.getByText('Gestión de Memoria')).toBeInTheDocument()
+    expect(screen.getByText('Diseño Basado en Skills')).toBeInTheDocument()
+    expect(screen.getByText('Monitoreo y Observabilidad')).toBeInTheDocument()
+  })
+
+  it('renders "Our Framework" section with 5 steps', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('Nuestro Framework')).toBeInTheDocument()
+    expect(screen.getByText('01')).toBeInTheDocument()
+    expect(screen.getByText('Descubrimiento')).toBeInTheDocument()
+    expect(screen.getByText('02')).toBeInTheDocument()
+    expect(screen.getByText('Arquitectura')).toBeInTheDocument()
+    expect(screen.getByText('03')).toBeInTheDocument()
+    expect(screen.getByText('Implementación')).toBeInTheDocument()
+    expect(screen.getByText('04')).toBeInTheDocument()
+    expect(screen.getByText('Observabilidad')).toBeInTheDocument()
+    expect(screen.getByText('05')).toBeInTheDocument()
+    expect(screen.getByText('Optimización')).toBeInTheDocument()
+  })
+
+  it('renders "Deployment Flexibility" section with 4 options', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('Flexibilidad de Despliegue')).toBeInTheDocument()
+    expect(screen.getByText('Cloud')).toBeInTheDocument()
+    expect(screen.getByText('On-Premise')).toBeInTheDocument()
+    expect(screen.getByText('Híbrido')).toBeInTheDocument()
+    expect(screen.getByText('Contenedorizado')).toBeInTheDocument()
+  })
+
+  it('renders final CTA section', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByText('¿Listo para Desplegar tu Equipo de Agentes?')).toBeInTheDocument()
+    expect(screen.getByText('Agendar Consultoría')).toBeInTheDocument()
   })
 })
 
-describe('Home Page Integration', () => {
-  it('Home page imports and renders AgentTeamsSection', () => {
+describe('ClawdBot Page — No specific agents or pricing', () => {
+  it('does NOT mention specific agent names', () => {
+    const fs = require('fs')
+    const content = fs.readFileSync('./pages/ClawdBot.tsx', 'utf-8')
+    // Should not reference our specific agents
+    expect(content).not.toMatch(/\bTARS\b/)
+    expect(content).not.toMatch(/\bCOOPER\b/)
+    expect(content).not.toMatch(/\bMURPH\b/)
+    expect(content).not.toMatch(/\bBRAND\b/)
+    // MANN could appear in generic text, but not as agent name reference
+    expect(content).not.toMatch(/name:\s*['"]MANN['"]/)
+  })
+
+  it('does NOT contain pricing tiers', () => {
+    const fs = require('fs')
+    const content = fs.readFileSync('./pages/ClawdBot.tsx', 'utf-8')
+    expect(content).not.toContain('$997')
+    expect(content).not.toContain('$2,997')
+    expect(content).not.toContain('$7,997')
+    expect(content).not.toContain('Starter')
+    expect(content).not.toContain('Professional')
+    expect(content).not.toContain('Enterprise')
+  })
+
+  it('is platform-agnostic (not tied to specific agent count)', () => {
+    renderWithProviders(<ClawdBot />)
+    const { container } = renderWithProviders(<ClawdBot />)
+    const text = container.textContent || ''
+    // Should not have "5 agents" or "133 tests" specific stats
+    expect(text).not.toContain('133')
+    expect(text).not.toContain('5 agentes especializados')
+  })
+})
+
+describe('ClawdBot Page — Security', () => {
+  it('no hardcoded secrets', () => {
+    const fs = require('fs')
+    const content = fs.readFileSync('./pages/ClawdBot.tsx', 'utf-8')
+    expect(content).not.toMatch(/sk-proj-[A-Za-z0-9_-]{20,}/)
+    expect(content).not.toMatch(/sk-ant-[A-Za-z0-9_-]{20,}/)
+    expect(content).not.toMatch(/eyJhbGciOi[A-Za-z0-9_-]{50,}/)
+  })
+
+  it('SEO metadata is set', () => {
+    renderWithProviders(<ClawdBot />)
+    expect(screen.getByTestId('helmet')).toBeInTheDocument()
+  })
+})
+
+describe('Home Page — Regression', () => {
+  it('AgentTeamsSection is removed from Home', () => {
     const fs = require('fs')
     const homeContent = fs.readFileSync('./pages/Home.tsx', 'utf-8')
-    expect(homeContent).toContain("import { AgentTeamsSection }")
-    expect(homeContent).toContain("<AgentTeamsSection />")
+    expect(homeContent).not.toContain('AgentTeamsSection')
+    expect(homeContent).not.toContain('agent-teams')
   })
 
-  it('AgentTeamsSection is placed after TechStack', () => {
-    const fs = require('fs')
-    const homeContent = fs.readFileSync('./pages/Home.tsx', 'utf-8')
-    const techStackPos = homeContent.indexOf('<TechStack')
-    const agentTeamsPos = homeContent.indexOf('<AgentTeamsSection')
-    const contactPos = homeContent.indexOf('<Contact')
-    expect(agentTeamsPos).toBeGreaterThan(techStackPos)
-    expect(contactPos).toBeGreaterThan(agentTeamsPos)
-  })
-
-  it('Navbar has agent-teams link in both languages', () => {
-    const fs = require('fs')
-    const navContent = fs.readFileSync('./components/Navbar.tsx', 'utf-8')
-    expect(navContent).toContain("agentTeams: 'Equipos IA'")
-    expect(navContent).toContain("agentTeams: 'AI Teams'")
-    expect(navContent).toContain("id: 'agent-teams'")
-  })
-
-  it('existing sections are not removed from Home', () => {
+  it('all original sections still present on Home', () => {
     const fs = require('fs')
     const homeContent = fs.readFileSync('./pages/Home.tsx', 'utf-8')
     expect(homeContent).toContain('<Hero')
@@ -258,5 +170,52 @@ describe('Home Page Integration', () => {
     expect(homeContent).toContain('<Features')
     expect(homeContent).toContain('<TechStack')
     expect(homeContent).toContain('<Contact')
+  })
+})
+
+describe('Routing & Navigation', () => {
+  it('App.tsx has /clawd-bot route', () => {
+    const fs = require('fs')
+    const appContent = fs.readFileSync('./App.tsx', 'utf-8')
+    expect(appContent).toContain('path="/clawd-bot"')
+    expect(appContent).toContain('ClawdBot')
+  })
+
+  it('Navbar links to /clawd-bot page (not section scroll)', () => {
+    const fs = require('fs')
+    const navContent = fs.readFileSync('./components/Navbar.tsx', 'utf-8')
+    expect(navContent).toContain("id: 'clawd-bot'")
+    expect(navContent).toContain('isPage: true')
+  })
+
+  it('Navbar has bilingual labels', () => {
+    const fs = require('fs')
+    const navContent = fs.readFileSync('./components/Navbar.tsx', 'utf-8')
+    expect(navContent).toContain("agentTeams: 'Equipos IA'")
+    expect(navContent).toContain("agentTeams: 'AI Teams'")
+  })
+})
+
+describe('English Content Verification', () => {
+  it('contains English translations for all sections', () => {
+    const fs = require('fs')
+    const content = fs.readFileSync('./pages/ClawdBot.tsx', 'utf-8')
+    // Hero
+    expect(content).toContain('Multi-Agent Systems')
+    expect(content).toContain('Built for Production')
+    // What is
+    expect(content).toContain('What is clawd.bot?')
+    // Expertise
+    expect(content).toContain('Our Expertise')
+    expect(content).toContain('Architecture Design')
+    expect(content).toContain('Agent Coordination')
+    // Framework
+    expect(content).toContain('Our Framework')
+    expect(content).toContain('Discovery')
+    // Deployment
+    expect(content).toContain('Deployment Flexibility')
+    // CTA
+    expect(content).toContain('Ready to Deploy Your Agent Team?')
+    expect(content).toContain('Book Consultation')
   })
 })
