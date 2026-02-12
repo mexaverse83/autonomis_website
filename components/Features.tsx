@@ -18,27 +18,27 @@ export const Features: React.FC = () => {
       features: [
         {
           title: "Equipos de Desarrollo",
-          description: "Agentes que escriben código, revisan PRs, corren pruebas y despliegan. Coordinados via Git."
+          description: "Agentes que escriben código, revisan pull requests, ejecutan suites de pruebas y despliegan — todo coordinado a través de Git. Uno construye. Otro prueba. Un tercero revisa."
         },
         {
           title: "Investigación y Análisis",
-          description: "Agentes que recopilan datos, analizan patrones y entregan reportes. Memoria compartida en todo el equipo."
+          description: "Un agente recopila datos crudos. Otro los enriquece. Un tercero detecta patrones y entrega un reporte — con fuentes. La memoria compartida significa que cada agente sabe lo que encontraron los demás."
         },
         {
           title: "Operaciones y Monitoreo",
-          description: "Agentes que vigilan sistemas, responden a alertas y coordinan respuestas. 24/7."
+          description: "Agentes que vigilan tus sistemas las 24 horas, detectan anomalías antes de que se conviertan en caídas y coordinan la respuesta a incidentes. Cuando algo se rompe a las 3 AM, no necesitan café."
         },
         {
           title: "Contenido y Comunicación",
-          description: "Agentes que redactan, revisan, formatean y publican. Flujos de trabajo multi-paso."
+          description: "Redactar, revisar, formatear, publicar. Cuatro pasos, cuatro posibles cuellos de botella — o cuatro agentes trabajando en paralelo. Listo antes de que termines tu café."
         },
         {
           title: "Procesamiento de Datos",
-          description: "Agentes que clasifican, transforman, enriquecen y enrutan datos. Coordinación de pipeline."
+          description: "Clasificar, transformar, enriquecer, enrutar. Agentes que convierten inputs desordenados en outputs estructurados — y pasan los resultados al siguiente agente en el pipeline."
         },
         {
           title: "Flujos Personalizados",
-          description: "Tu lógica de negocio, tus reglas. Nosotros construimos la estructura del equipo, tú defines la misión."
+          description: "Tu lógica de negocio. Tus reglas. Tus casos especiales. Nosotros construimos la estructura del equipo y la capa de coordinación. Tú defines la misión. El framework se adapta."
         }
       ]
     },
@@ -49,27 +49,27 @@ export const Features: React.FC = () => {
       features: [
         {
           title: "Development Teams",
-          description: "Agents that write code, review PRs, run tests, and deploy. Coordinated via Git."
+          description: "Agents that write code, review pull requests, run test suites, and deploy — all coordinated through Git. One builds. Another tests. A third reviews. Merge conflicts? Solved in seconds."
         },
         {
           title: "Research & Analysis",
-          description: "Agents that gather data, analyze patterns, and deliver reports. Shared memory across the team."
+          description: "One agent gathers raw data. Another enriches it. A third spots patterns and delivers a report — with citations. Shared memory means every agent knows what the others found."
         },
         {
           title: "Operations & Monitoring",
-          description: "Agents that watch systems, respond to alerts, and coordinate responses. 24/7."
+          description: "Agents that watch your systems around the clock, catch anomalies before they become outages, and coordinate incident response. When something breaks at 3 AM, they don't need coffee."
         },
         {
           title: "Content & Communication",
-          description: "Agents that draft, review, format, and publish. Multi-step workflows."
+          description: "Draft, review, format, publish. Four steps, four potential bottlenecks — or four agents working in parallel. Done before you finish your coffee."
         },
         {
           title: "Data Processing",
-          description: "Agents that classify, transform, enrich, and route data. Pipeline coordination."
+          description: "Classify, transform, enrich, route. Agents that turn messy inputs into structured outputs — then hand the results to the next agent in the pipeline. Just clean data, flowing."
         },
         {
           title: "Custom Workflows",
-          description: "Your business logic, your rules. We build the team structure, you define the mission."
+          description: "Your business logic. Your rules. Your edge cases. We build the team structure and the coordination layer. You define the mission. The framework adapts. The agents execute."
         }
       ]
     }
