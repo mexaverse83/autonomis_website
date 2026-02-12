@@ -33,8 +33,8 @@ describe('ClawdBot Page — Spanish (default)', () => {
 
   it('renders hero headline', () => {
     renderWithProviders(<ClawdBot />)
-    expect(screen.getByText('Sistemas Multi-Agente')).toBeInTheDocument()
-    expect(screen.getByText('Diseñados para Producción')).toBeInTheDocument()
+    expect(screen.getByText('Tu Equipo de IA,')).toBeInTheDocument()
+    expect(screen.getByText('Desplegado.')).toBeInTheDocument()
   })
 
   it('renders hero subheadline', () => {
@@ -47,19 +47,20 @@ describe('ClawdBot Page — Spanish (default)', () => {
     expect(screen.getByText('Solicitar Consultoría')).toBeInTheDocument()
   })
 
-  it('renders "What is clawd.bot" section', () => {
+  it('renders "What is OpenClaw" section', () => {
     renderWithProviders(<ClawdBot />)
-    expect(screen.getByText('¿Qué es clawd.bot?')).toBeInTheDocument()
-    expect(screen.getByText(/clawd\.bot \(powered by OpenClaw\)/)).toBeInTheDocument()
+    expect(screen.getByText('¿Qué es OpenClaw?')).toBeInTheDocument()
+    expect(screen.getByText(/OpenClaw es la plataforma/)).toBeInTheDocument()
   })
 
-  it('renders 5 "what is" bullet points', () => {
+  it('renders 6 "what is" bullet points', () => {
     renderWithProviders(<ClawdBot />)
-    expect(screen.getByText('Agentes especializados que trabajan como un equipo real')).toBeInTheDocument()
-    expect(screen.getByText('Comunicación inter-agente en tiempo real')).toBeInTheDocument()
+    expect(screen.getByText(/Equipos multi-agente/)).toBeInTheDocument()
+    expect(screen.getByText(/Cualquier canal/)).toBeInTheDocument()
     expect(screen.getByText(/Memoria persistente/)).toBeInTheDocument()
+    expect(screen.getByText(/Auto-hospedado/)).toBeInTheDocument()
+    expect(screen.getByText(/Setup en 5 minutos/)).toBeInTheDocument()
     expect(screen.getByText(/Habilidades modulares/)).toBeInTheDocument()
-    expect(screen.getByText(/Monitoreo y observabilidad completa/)).toBeInTheDocument()
   })
 
   it('renders "Our Expertise" section with 6 items', () => {
@@ -154,11 +155,12 @@ describe('ClawdBot Page — Security', () => {
 })
 
 describe('Home Page — Regression', () => {
-  it('AgentTeamsSection is removed from Home', () => {
+  it('AgentTeamsSection is present on Home', () => {
     const fs = require('fs')
     const homeContent = fs.readFileSync('./pages/Home.tsx', 'utf-8')
-    expect(homeContent).not.toContain('AgentTeamsSection')
-    expect(homeContent).not.toContain('agent-teams')
+    expect(homeContent).toContain('AgentTeamsSection')
+    expect(homeContent).toContain('ComparisonTable')
+    expect(homeContent).toContain('ChannelStrip')
   })
 
   it('all original sections still present on Home', () => {
@@ -201,10 +203,10 @@ describe('English Content Verification', () => {
     const fs = require('fs')
     const content = fs.readFileSync('./pages/ClawdBot.tsx', 'utf-8')
     // Hero
-    expect(content).toContain('Multi-Agent Systems')
-    expect(content).toContain('Built for Production')
+    expect(content).toContain('Your AI Team,')
+    expect(content).toContain('Deployed.')
     // What is
-    expect(content).toContain('What is clawd.bot?')
+    expect(content).toContain('What is OpenClaw?')
     // Expertise
     expect(content).toContain('Our Expertise')
     expect(content).toContain('Architecture Design')
