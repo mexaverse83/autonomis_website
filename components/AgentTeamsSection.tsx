@@ -18,6 +18,7 @@ import {
   CheckCircle,
   Clock,
   DollarSign,
+  Palette,
 } from 'lucide-react';
 
 export const AgentTeamsSection: React.FC = () => {
@@ -27,78 +28,68 @@ export const AgentTeamsSection: React.FC = () => {
 
   const content = {
     es: {
-      badge: 'Nuevo Servicio',
-      headline: 'Equipos de Agentes IA',
-      headlineAccent: 'Listos para Trabajar',
-      subheadline: 'Construimos un equipo de agentes IA. Luego los agentes construyeron nuestro dashboard.',
-      description: 'Desplegamos equipos completos de agentes IA especializados que trabajan juntos — desarrollo, QA, investigación, clasificación de email — todo coordinado automáticamente con comunicación en tiempo real.',
+      badge: 'Caso de Estudio',
+      headline: 'Construimos Nuestro Propio',
+      headlineAccent: 'Equipo Primero',
+      subheadline: '6 agentes IA. Coordinados. Entregando trabajo real.',
+      description: 'Antes de ofrecer equipos de agentes a clientes, construimos el nuestro. 6 agentes especializados trabajando juntos — desarrollo, QA, investigación, diseño, email y coordinación.',
       poweredBy: 'Powered by',
       howItWorks: 'Cómo Funciona',
       steps: [
-        { title: 'Despliegue Docker', desc: 'Cada agente corre en su propio contenedor con herramientas especializadas y acceso seguro.' },
-        { title: 'Comunicación Inter-agente', desc: 'Los agentes se comunican vía Redis messaging bus — coordinación en tiempo real sin intervención humana.' },
-        { title: 'Dashboard en Tiempo Real', desc: 'Monitorea estado de agentes, tareas Kanban, métricas de rendimiento y comunicaciones en vivo.' },
+        { title: 'Definir Estructura', desc: 'Cada agente recibe SOUL.md (identidad), AGENTS.md (reglas), skills y memoria.' },
+        { title: 'Desplegar y Conectar', desc: 'Contenedores Docker, mensajería Redis, workspace compartido. Bootstrap automatizado.' },
+        { title: 'Coordinar y Entregar', desc: 'Los agentes se comunican directamente, pasan trabajo, hacen standups y entregan resultados.' },
       ],
       agents: [
-        { name: 'Coordinador', role: 'Gestión de equipo, standups diarios, priorización de tareas', icon: 'shield' },
-        { name: 'Desarrollador', role: 'Código full-stack, Git, CI/CD, despliegue', icon: 'code' },
-        { name: 'Investigador', role: 'Análisis de mercado, evaluación técnica, reportes', icon: 'telescope' },
-        { name: 'Clasificador de Email', role: 'Clasificación automática con Gmail labels', icon: 'mail' },
-        { name: 'QA Engineer', role: 'Testing automatizado, escaneo de seguridad', icon: 'flask' },
+        { name: 'TARS', role: 'Coordinador de equipo y scrum master', icon: 'shield' },
+        { name: 'COOPER', role: 'Desarrollador full-stack y Git', icon: 'code' },
+        { name: 'MURPH', role: 'Investigación y análisis', icon: 'telescope' },
+        { name: 'BRAND', role: 'Procesamiento de datos y clasificación', icon: 'mail' },
+        { name: 'MANN', role: 'QA y testing', icon: 'flask' },
+        { name: 'TOM', role: 'Diseño visual y arquitectura', icon: 'palette' },
       ],
-      results: 'Lo Que Hemos Logrado',
+      results: 'Resultados Reales',
       stats: [
-        { value: '5', label: 'Agentes especializados' },
-        { value: '133', label: 'Tests automatizados' },
+        { value: '6', label: 'Agentes especializados' },
+        { value: '242+', label: 'Tests automatizados' },
         { value: '<1 día', label: 'Dashboard completo' },
         { value: '24/7', label: 'Operación continua' },
       ],
-      tiers: 'Planes de Servicio',
-      tierList: [
-        { name: 'Starter', price: '$997', period: '/mes', agents: '3 agentes', features: ['Coordinador + 2 especialistas', 'Dashboard básico', 'Comunicación inter-agente', 'Soporte por email'] },
-        { name: 'Professional', price: '$2,997', period: '/mes', agents: '5 agentes', features: ['Equipo completo de 5 agentes', 'Dashboard con métricas', 'Integración GitHub + CI/CD', 'Soporte prioritario'], popular: true },
-        { name: 'Enterprise', price: '$7,997+', period: '/mes', agents: '10+ agentes', features: ['Agentes personalizados', 'Dashboard dedicado', 'Integración con sistemas internos', 'SLA garantizado', 'Soporte 24/7'] },
-      ],
       cta: 'Solicitar Demo',
       ctaSub: 'Ve nuestro equipo de agentes en acción',
-      differentiator: 'CrewAI te da el framework. Nosotros te damos los agentes, ya trabajando.',
+      differentiator: 'Despliega el framework. Define la misión. Deja que los agentes trabajen.',
     },
     en: {
-      badge: 'New Service',
-      headline: 'AI Agent Teams',
-      headlineAccent: 'Ready to Work',
-      subheadline: 'We built a team of AI agents. Then the AI agents built our dashboard.',
-      description: 'We deploy complete teams of specialized AI agents that work together — development, QA, research, email classification — all automatically coordinated with real-time communication.',
+      badge: 'Case Study',
+      headline: 'We Built Our Own',
+      headlineAccent: 'Team First',
+      subheadline: '6 AI agents. Coordinated. Shipping real work.',
+      description: 'Before offering agent teams to clients, we built our own. 6 specialized agents working together — development, QA, research, design, email, and coordination.',
       poweredBy: 'Powered by',
       howItWorks: 'How It Works',
       steps: [
-        { title: 'Docker Deployment', desc: 'Each agent runs in its own container with specialized tools and secure access.' },
-        { title: 'Inter-agent Communication', desc: 'Agents communicate via Redis messaging bus — real-time coordination without human intervention.' },
-        { title: 'Real-time Dashboard', desc: 'Monitor agent status, Kanban tasks, performance metrics, and live communications.' },
+        { title: 'Define Structure', desc: 'Each agent gets SOUL.md (identity), AGENTS.md (rules), skills, and memory.' },
+        { title: 'Deploy & Connect', desc: 'Docker containers, Redis messaging, shared workspace. Automated bootstrap.' },
+        { title: 'Coordinate & Ship', desc: 'Agents communicate directly, hand off work, run standups, and deliver results.' },
       ],
       agents: [
-        { name: 'Coordinator', role: 'Team management, daily standups, task prioritization', icon: 'shield' },
-        { name: 'Developer', role: 'Full-stack code, Git, CI/CD, deployment', icon: 'code' },
-        { name: 'Researcher', role: 'Market analysis, tech evaluation, reports', icon: 'telescope' },
-        { name: 'Email Classifier', role: 'Automatic classification with Gmail labels', icon: 'mail' },
-        { name: 'QA Engineer', role: 'Automated testing, security scanning', icon: 'flask' },
+        { name: 'TARS', role: 'Squad lead & scrum master', icon: 'shield' },
+        { name: 'COOPER', role: 'Full-stack developer & Git', icon: 'code' },
+        { name: 'MURPH', role: 'Research & analysis', icon: 'telescope' },
+        { name: 'BRAND', role: 'Data processing & classification', icon: 'mail' },
+        { name: 'MANN', role: 'QA & testing', icon: 'flask' },
+        { name: 'TOM', role: 'Visual design & architecture', icon: 'palette' },
       ],
-      results: 'What We\'ve Accomplished',
+      results: 'Real Results',
       stats: [
-        { value: '5', label: 'Specialized agents' },
-        { value: '133', label: 'Automated tests' },
+        { value: '6', label: 'Specialized agents' },
+        { value: '242+', label: 'Automated tests' },
         { value: '<1 day', label: 'Full dashboard built' },
         { value: '24/7', label: 'Continuous operation' },
       ],
-      tiers: 'Service Plans',
-      tierList: [
-        { name: 'Starter', price: '$997', period: '/mo', agents: '3 agents', features: ['Coordinator + 2 specialists', 'Basic dashboard', 'Inter-agent communication', 'Email support'] },
-        { name: 'Professional', price: '$2,997', period: '/mo', agents: '5 agents', features: ['Full 5-agent team', 'Dashboard with metrics', 'GitHub + CI/CD integration', 'Priority support'], popular: true },
-        { name: 'Enterprise', price: '$7,997+', period: '/mo', agents: '10+ agents', features: ['Custom agents', 'Dedicated dashboard', 'Internal system integration', 'Guaranteed SLA', '24/7 support'] },
-      ],
       cta: 'Request Demo',
       ctaSub: 'See our agent team in action',
-      differentiator: 'CrewAI gives you the framework. We give you the agents, already working.',
+      differentiator: 'Deploy the framework. Define the mission. Let the agents work.',
     },
   };
 
@@ -110,6 +101,7 @@ export const AgentTeamsSection: React.FC = () => {
     telescope: <Telescope className="w-5 h-5" />,
     mail: <Mail className="w-5 h-5" />,
     flask: <FlaskConical className="w-5 h-5" />,
+    palette: <Palette className="w-5 h-5" />,
   };
 
   const gradients = [
@@ -118,6 +110,7 @@ export const AgentTeamsSection: React.FC = () => {
     'from-violet-500 to-purple-600',
     'from-green-500 to-emerald-600',
     'from-rose-500 to-pink-600',
+    'from-teal-500 to-cyan-600',
   ];
 
   const scrollTo = (id: string) => {
@@ -190,7 +183,7 @@ export const AgentTeamsSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-20"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {t.agents.map((agent, i) => (
               <motion.div
                 key={agent.name}
@@ -273,68 +266,6 @@ export const AgentTeamsSection: React.FC = () => {
                   {stat.value}
                 </div>
                 <p className={`text-sm mt-1 ${isDark ? 'text-zinc-500' : 'text-zinc-500'}`}>{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Pricing Tiers */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20"
-        >
-          <h3 className={`text-2xl font-bold text-center mb-10 ${isDark ? 'text-white' : 'text-zinc-900'}`}>
-            {t.tiers}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {t.tierList.map((tier, i) => (
-              <motion.div
-                key={tier.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`relative p-6 rounded-2xl border ${
-                  tier.popular
-                    ? isDark
-                      ? 'bg-purple-500/10 border-purple-500/30 ring-1 ring-purple-500/20'
-                      : 'bg-purple-50 border-purple-300 ring-1 ring-purple-200'
-                    : isDark
-                      ? 'bg-zinc-900/50 border-zinc-800'
-                      : 'bg-white border-zinc-200'
-                }`}
-              >
-                {tier.popular && (
-                  <span className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-medium ${
-                    isDark ? 'bg-purple-500 text-white' : 'bg-purple-600 text-white'
-                  }`}>
-                    Popular
-                  </span>
-                )}
-                <h4 className={`font-semibold text-lg mb-1 ${isDark ? 'text-white' : 'text-zinc-900'}`}>{tier.name}</h4>
-                <p className={`text-sm mb-4 ${isDark ? 'text-zinc-500' : 'text-zinc-500'}`}>{tier.agents}</p>
-                <div className="mb-6">
-                  <span className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-zinc-900'}`}>{tier.price}</span>
-                  <span className={`text-sm ${isDark ? 'text-zinc-500' : 'text-zinc-500'}`}>{tier.period}</span>
-                </div>
-                <ul className="space-y-2 mb-6">
-                  {tier.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2">
-                      <CheckCircle className={`w-4 h-4 mt-0.5 shrink-0 ${isDark ? 'text-purple-400' : 'text-purple-600'}`} />
-                      <span className={`text-sm ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant={tier.popular ? 'primary' : 'secondary'}
-                  className="w-full"
-                  onClick={() => scrollTo('contacto')}
-                >
-                  {t.cta}
-                </Button>
               </motion.div>
             ))}
           </div>

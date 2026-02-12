@@ -13,32 +13,30 @@ export const Hero: React.FC = () => {
 
   const content = {
     es: {
-      terms: ["Automatización", "Machine Learning", "Ingeniería de Calidad", "Desarrollo", "Agentes Agénticos", "Transformación Digital"],
-      weAre: "Somos",
-      headlineStart: "Agentes de IA para Empresas",
-      headlineEnd: "Diseñados para Producción, No para Demos",
-      subheadline: "Implementamos agentes de IA con juicio integrado — que saben cuándo actuar, cuándo escalar, y cuándo consultar a un humano.",
+      terms: ["Coordinación", "Despliegue", "Automatización", "Orquestación", "Comunicación", "Producción"],
+      weAre: "Desplegamos",
+      headlineStart: "Equipos de IA Autónomos",
+      headlineEnd: "Desplegados, Coordinados y Trabajando",
+      subheadline: "Construimos equipos de agentes de IA que se comunican, coordinan y entregan — usando OpenClaw, Claude y herramientas modernas. Local, Docker o nube. Tus agentes, tus reglas.",
       ctaPrimary: "Agendar Llamada",
-      ctaSecondary: "Ver Framework",
-      // Trust indicators
-      trust1: "Evaluación integrada",
-      trust2: "Trazabilidad completa",
-      trust3: "Control y cumplimiento",
-      trust4: "Juicio desde el diseño"
+      ctaSecondary: "Ver el Framework",
+      trust1: "Coordinación multi-agente",
+      trust2: "Despliegue automatizado",
+      trust3: "Comunicación en tiempo real",
+      trust4: "Enfoque framework-first"
     },
     en: {
-      terms: ["Automation", "Machine Learning", "Quality Engineering", "Development", "Agentic Agents", "Digital Transformation"],
-      weAre: "We are",
-      headlineStart: "AI Agents for Enterprise",
-      headlineEnd: "Built for Production, Not for Demos",
-      subheadline: "We deploy AI agents with built-in judgment — knowing when to act, when to escalate, and when to ask a human.",
+      terms: ["Coordination", "Deployment", "Automation", "Orchestration", "Communication", "Production"],
+      weAre: "We deploy",
+      headlineStart: "Autonomous AI Teams",
+      headlineEnd: "Deployed, Coordinated, and Working",
+      subheadline: "We build teams of AI agents that communicate, coordinate, and deliver — using OpenClaw, Claude, and modern AI tooling. Local, Docker, or cloud. Your agents, your rules.",
       ctaPrimary: "Book a Call",
-      ctaSecondary: "View Framework",
-      // Trust indicators
-      trust1: "Built-in evaluation",
-      trust2: "Full traceability",
-      trust3: "Control & compliance",
-      trust4: "Judgment-first design"
+      ctaSecondary: "See the Framework",
+      trust1: "Multi-agent coordination",
+      trust2: "Automated deployment",
+      trust3: "Real-time communication",
+      trust4: "Framework-first approach"
     }
   };
 

@@ -11,45 +11,45 @@ export const JudgmentSection: React.FC = () => {
 
   const content = {
     es: {
-      quote: '"La mayoría de los sistemas de IA fallarán no porque los modelos sean débiles, sino porque falta el juicio."',
-      headline: "La resiliencia importa más que la autonomía.",
-      subtext: "Los sistemas que registran contexto de decisiones, no solo resultados, acumulan valor con el tiempo.",
+      quote: '"Los agentes individuales son demos. Los equipos de agentes coordinados son producción."',
+      headline: "Un agente no es suficiente.",
+      subtext: "El trabajo real necesita especialistas que hablan entre sí.",
       pillars: [
         {
-          title: "Evaluar si Decidir",
-          description: "Nuestras evaluaciones cambian de '¿es correcto?' a '¿debería tomarse esta decisión?' No todo problema necesita una respuesta autónoma.",
+          title: "Agentes Solitarios Chocan con Paredes",
+          description: "Un agente no puede investigar, codificar, probar y desplegar. Los humanos tampoco. Por eso tenemos equipos.",
           icon: Target
         },
         {
-          title: "Registrar Contexto",
-          description: "Cada decisión incluye el por qué, no solo el qué. Alternativas consideradas, niveles de confianza, y razones de escalación — todo documentado para aprendizaje continuo.",
+          title: "La Coordinación es lo Difícil",
+          description: "Lograr que los agentes compartan contexto, pasen trabajo y no se estorben entre sí — eso es lo que resolvemos.",
           icon: Scale
         },
         {
-          title: "Resiliencia Primero",
-          description: "Construimos sistemas que fallan graciosamente, no sistemas que nunca fallan. Cuando la confianza es baja, el sistema sabe detenerse y pedir ayuda.",
+          title: "Framework > Prompt",
+          description: "Un agente bien estructurado con reglas, memoria y habilidades supera a un prompt inteligente cada vez.",
           icon: AlertTriangle
         }
       ]
     },
     en: {
-      quote: '"Most AI systems will fail not because the models are weak, but because judgment is missing."',
-      headline: "Resilience matters more than autonomy.",
-      subtext: "Systems that record decision context, not just outputs, compound value over time.",
+      quote: '"Single agents are demos. Coordinated agent teams are production."',
+      headline: "One agent isn't enough.",
+      subtext: "Real work needs specialists that talk to each other.",
       pillars: [
         {
-          title: "Eval: Should We Decide?",
-          description: "Our evals shift from 'is this correct' to 'should this decision be made at all.' Not every problem needs an autonomous answer.",
+          title: "Solo Agents Hit Walls",
+          description: "One agent can't research, code, test, and deploy. Humans can't either. That's why we have teams.",
           icon: Target
         },
         {
-          title: "Record Context",
-          description: "Every decision includes the why, not just the what. Alternatives considered, confidence levels, and escalation reasons — all documented for continuous learning.",
+          title: "Coordination is the Hard Part",
+          description: "Getting agents to share context, hand off work, and not step on each other? That's what we solve.",
           icon: Scale
         },
         {
-          title: "Resilience First",
-          description: "We build systems that fail gracefully, not systems that never fail. When confidence is low, the system knows to stop and ask for help.",
+          title: "Framework > Prompt",
+          description: "A well-structured agent with rules, memory, and skills beats a clever prompt every time.",
           icon: AlertTriangle
         }
       ]

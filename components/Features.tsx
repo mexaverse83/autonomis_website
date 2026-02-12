@@ -1,6 +1,6 @@
 import React from 'react';
 import { SpotlightCard } from './ui/SpotlightCard';
-import { Bot, ShieldCheck, Users, Scale, Activity, Blocks } from 'lucide-react';
+import { Code2, Search, Monitor, FileText, Database, Puzzle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
@@ -12,64 +12,64 @@ export const Features: React.FC = () => {
 
   const content = {
     es: {
-      headlineStart: "El stack moderno de",
-      headlineEnd: "IA Resiliente",
-      subheadline: "Implementamos un marco de trabajo de estándar industrial diseñado para sistemas que fallan graciosamente, no sistemas que nunca fallan.",
+      headlineStart: "Tu equipo.",
+      headlineEnd: "Tus casos de uso",
+      subheadline: "Desplegamos el framework. Tú defines lo que hacen los agentes.",
       features: [
         {
-          title: "Orquestación Autónoma",
-          description: "CrewAI coordina equipos de agentes especializados (Triaje → Respuesta → Escalación) que resuelven casos complejos sin intervención humana."
+          title: "Equipos de Desarrollo",
+          description: "Agentes que escriben código, revisan PRs, corren pruebas y despliegan. Coordinados via Git."
         },
         {
-          title: "Guardrails de Seguridad",
-          description: "Guardrails AI protege cada interacción: bloquea inyecciones de prompt, sanitiza PII y valida respuestas antes de enviarlas al cliente."
+          title: "Investigación y Análisis",
+          description: "Agentes que recopilan datos, analizan patrones y entregan reportes. Memoria compartida en todo el equipo."
         },
         {
-          title: "Contexto CRM Integrado",
-          description: "Integración nativa con HubSpot CRM para enriquecer cada ticket con historial del cliente, tier de servicio y contexto de negocio."
+          title: "Operaciones y Monitoreo",
+          description: "Agentes que vigilan sistemas, responden a alertas y coordinan respuestas. 24/7."
         },
         {
-          title: "Juicio Integrado",
-          description: "DeepEval no solo verifica precisión — mide confianza. Cada respuesta es evaluada por calidad de decisión, calibración de confianza, y cuándo el sistema debe detenerse y consultar a un humano."
+          title: "Contenido y Comunicación",
+          description: "Agentes que redactan, revisan, formatean y publican. Flujos de trabajo multi-paso."
         },
         {
-          title: "Observabilidad Completa",
-          description: "Langfuse rastrea dónde las decisiones fallan, no solo dónde los modelos funcionan bien. Tiempos, costos y puntos de decisión en tiempo real."
+          title: "Procesamiento de Datos",
+          description: "Agentes que clasifican, transforman, enriquecen y enrutan datos. Coordinación de pipeline."
         },
         {
-          title: "Arquitectura Modular",
-          description: "Stack desacoplado que permite intercambiar LLMs (Gemini, OpenAI, Claude), CRMs o métricas sin modificar la lógica de negocio."
+          title: "Flujos Personalizados",
+          description: "Tu lógica de negocio, tus reglas. Nosotros construimos la estructura del equipo, tú defines la misión."
         }
       ]
     },
     en: {
-      headlineStart: "The modern stack for",
-      headlineEnd: "Resilient AI",
-      subheadline: "We implement an industry-standard framework designed for systems that fail gracefully, not systems that never fail.",
+      headlineStart: "Your team.",
+      headlineEnd: "Your use cases",
+      subheadline: "We deploy the framework. You define what the agents do.",
       features: [
         {
-          title: "Autonomous Orchestration",
-          description: "CrewAI coordinates specialized agent teams (Triage → Response → Escalation) that resolve complex cases without human intervention."
+          title: "Development Teams",
+          description: "Agents that write code, review PRs, run tests, and deploy. Coordinated via Git."
         },
         {
-          title: "Safety Guardrails",
-          description: "Guardrails AI protects every interaction: blocks prompt injections, sanitizes PII, and validates responses before sending to customers."
+          title: "Research & Analysis",
+          description: "Agents that gather data, analyze patterns, and deliver reports. Shared memory across the team."
         },
         {
-          title: "Integrated CRM Context",
-          description: "Native HubSpot CRM integration enriches every ticket with customer history, service tier, and business context."
+          title: "Operations & Monitoring",
+          description: "Agents that watch systems, respond to alerts, and coordinate responses. 24/7."
         },
         {
-          title: "Built-in Judgment",
-          description: "DeepEval doesn't just check accuracy — it measures trust. Every response is evaluated for decision quality, confidence calibration, and when the system should stop and ask a human."
+          title: "Content & Communication",
+          description: "Agents that draft, review, format, and publish. Multi-step workflows."
         },
         {
-          title: "Complete Observability",
-          description: "Langfuse tracks where decisions go wrong, not just where models perform well. Execution times, costs, and decision points in real-time."
+          title: "Data Processing",
+          description: "Agents that classify, transform, enrich, and route data. Pipeline coordination."
         },
         {
-          title: "Modular Architecture",
-          description: "Decoupled stack allowing you to swap LLMs (Gemini, OpenAI, Claude), CRMs, or metrics without changing business logic."
+          title: "Custom Workflows",
+          description: "Your business logic, your rules. We build the team structure, you define the mission."
         }
       ]
     }
@@ -78,12 +78,12 @@ export const Features: React.FC = () => {
   const t = content[language];
 
   const icons = [
-    <Bot className="w-6 h-6 text-red-400" />,         // CrewAI - Orchestration
-    <ShieldCheck className="w-6 h-6 text-purple-400" />, // Guardrails AI - Safety
-    <Users className="w-6 h-6 text-pink-400" />,      // HubSpot CRM - Context
-    <Scale className="w-6 h-6 text-amber-400" />,     // Built-in Judgment
-    <Activity className="w-6 h-6 text-emerald-400" />, // Langfuse - Observability
-    <Blocks className="w-6 h-6 text-blue-400" />      // Modular Architecture
+    <Code2 className="w-6 h-6 text-blue-400" />,
+    <Search className="w-6 h-6 text-purple-400" />,
+    <Monitor className="w-6 h-6 text-emerald-400" />,
+    <FileText className="w-6 h-6 text-amber-400" />,
+    <Database className="w-6 h-6 text-red-400" />,
+    <Puzzle className="w-6 h-6 text-pink-400" />
   ];
 
   return (

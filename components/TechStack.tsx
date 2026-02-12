@@ -4,52 +4,15 @@ import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 
 const tools = [
-  {
-    name: "Snorkel AI",
-    category: "Data Labeling",
-    logo: "/logos/snorkel.png"
-  },
-  {
-    name: "Weights & Biases",
-    category: "Training Tracking",
-    logo: "/logos/wandb.png"
-  },
-  {
-    name: "Ray Serve",
-    category: "Inference",
-    logo: "/logos/ray.svg"
-  },
-  {
-    name: "CrewAI",
-    category: "Orchestration",
-    logo: "/logos/crewai.png"
-  },
-
-  {
-    name: "LangGraph",
-    category: "Orchestration",
-    logo: "/logos/langgraph.png"
-  },
-  {
-    name: "DeepEval",
-    category: "QA Testing",
-    logo: "/logos/deepeval.png"
-  },
-  {
-    name: "Langfuse",
-    category: "Observability",
-    logo: "/logos/langfuse.png"
-  },
-  {
-    name: "Credo AI",
-    category: "Governance",
-    logo: "/logos/credo.png"
-  },
-  {
-    name: "MLflow",
-    category: "Experiment Tracking",
-    logo: "/logos/mlflow.png"
-  }
+  { name: "OpenClaw", category: "Agent Framework", logo: "/logos/openclaw.png" },
+  { name: "Claude", category: "LLM", logo: "/logos/claude.png" },
+  { name: "Codex CLI", category: "Coding Agent", logo: "/logos/codex.png" },
+  { name: "Cursor", category: "AI IDE", logo: "/logos/cursor.png" },
+  { name: "Docker", category: "Deployment", logo: "/logos/docker.png" },
+  { name: "Kubernetes", category: "Scale", logo: "/logos/k8s.png" },
+  { name: "Redis", category: "Messaging", logo: "/logos/redis.png" },
+  { name: "Supabase", category: "Data", logo: "/logos/supabase.png" },
+  { name: "GitHub", category: "Version Control", logo: "/logos/github.png" },
 ];
 
 // Duplicate tools for seamless infinite scroll
@@ -61,8 +24,8 @@ export const TechStack: React.FC = () => {
   const isDark = theme === 'dark';
 
   const title = language === 'es'
-    ? "Potenciado por las mejores herramientas del ecosistema"
-    : "Powered by the ecosystem's best tools";
+    ? "Construido con herramientas modernas de IA"
+    : "Built with modern AI tooling";
 
   return (
     <section id="herramientas" className={`py-16 border-t relative overflow-hidden ${isDark ? 'bg-black border-zinc-900' : 'bg-white border-zinc-200'}`}>
