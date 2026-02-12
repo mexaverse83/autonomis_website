@@ -318,9 +318,9 @@ const phase4 = {
         subtitle: "Herramientas Personalizadas",
         icon: Wrench,
         color: "#fbbf24",
-        description: "Fase 4: Los skills dan capacidades específicas a los agentes — clima, código, investigación. Modulares y reutilizables.",
+        description: "Fase 4: Los skills no son solo plugins — son procedimientos operativos vivos. Los agentes no solo tienen capacidades, tienen procesos documentados que mejoran con el tiempo.",
         tech: "Skills Framework",
-        outcome: "Agentes con herramientas especializadas para cada tarea.",
+        outcome: "Agentes con herramientas especializadas y procesos documentados para cada tarea.",
         visualType: "quality-check",
         visualContent: {
             tests: [
@@ -330,26 +330,33 @@ const phase4 = {
                 { name: "Estado", status: "ACTIVO", score: "✓" }
             ]
         },
-        codeTitle: "skills/weather/SKILL.md",
-        code: `# Weather Skill
-name: weather
-description: Get weather and forecasts
+        codeTitle: "skills/prospect-research/SKILL.md",
+        code: `# Prospect Research Skill
+name: prospect-research
+description: |
+  Living SOP for company & contact research.
+
+  USE WHEN:
+  - Finding decision-makers at a company
+  - Company enrichment (size, industry, revenue)
+  - Building Power Trio contact lists
+
+  DON'T USE WHEN:
+  - Just need a company URL (use web search)
+  - Data already exists (check /research/ first)
+  - Need to UPDATE the sheet (send to Brand)
+
+  OUTPUTS:
+  - Research report + contact data + fit score
+  - Markdown at /research/prospects/{company}.md
+
 tools_required: [exec]
-
-## Usage
-1. Read location from context
-2. Fetch via wttr.in API
-3. Format for user's platform
-4. Return conditions + forecast
-
-## Example
-> "What's the weather in Austin?"
-→ Fetches wttr.in/Austin
-→ Returns: "72°F, partly cloudy"`,
-        codePreview: `# skills/weather/SKILL.md
-name: weather
-tools: [exec]
-→ "72°F, partly cloudy"`
+# Skills aren't just plugins — they're living SOPs.
+# Documented processes that improve over time.`,
+        codePreview: `# SKILL.md — Living SOP
+USE WHEN: decision-makers, enrichment
+DON'T USE WHEN: URL lookup, data exists
+OUTPUTS: report + contacts + fit score`
     },
     en: {
         id: 3,
@@ -358,9 +365,9 @@ tools: [exec]
         subtitle: "Custom Tools",
         icon: Wrench,
         color: "#fbbf24",
-        description: "Phase 4: Skills give agents specific capabilities — weather, coding, research. Modular and reusable.",
+        description: "Phase 4: Skills aren't just plugins — they're living standard operating procedures. Agents don't just have capabilities, they have documented processes that improve over time.",
         tech: "Skills Framework",
-        outcome: "Agents with specialized tools for every task.",
+        outcome: "Agents with specialized tools and documented processes for every task.",
         visualType: "quality-check",
         visualContent: {
             tests: [
@@ -370,26 +377,33 @@ tools: [exec]
                 { name: "Status", status: "ACTIVE", score: "✓" }
             ]
         },
-        codeTitle: "skills/weather/SKILL.md",
-        code: `# Weather Skill
-name: weather
-description: Get weather and forecasts
+        codeTitle: "skills/prospect-research/SKILL.md",
+        code: `# Prospect Research Skill
+name: prospect-research
+description: |
+  Living SOP for company & contact research.
+
+  USE WHEN:
+  - Finding decision-makers at a company
+  - Company enrichment (size, industry, revenue)
+  - Building Power Trio contact lists
+
+  DON'T USE WHEN:
+  - Just need a company URL (use web search)
+  - Data already exists (check /research/ first)
+  - Need to UPDATE the sheet (send to Brand)
+
+  OUTPUTS:
+  - Research report + contact data + fit score
+  - Markdown at /research/prospects/{company}.md
+
 tools_required: [exec]
-
-## Usage
-1. Read location from context
-2. Fetch via wttr.in API
-3. Format for user's platform
-4. Return conditions + forecast
-
-## Example
-> "What's the weather in Austin?"
-→ Fetches wttr.in/Austin
-→ Returns: "72°F, partly cloudy"`,
-        codePreview: `# skills/weather/SKILL.md
-name: weather
-tools: [exec]
-→ "72°F, partly cloudy"`
+# Skills aren't just plugins — they're living SOPs.
+# Documented processes that improve over time.`,
+        codePreview: `# SKILL.md — Living SOP
+USE WHEN: decision-makers, enrichment
+DON'T USE WHEN: URL lookup, data exists
+OUTPUTS: report + contacts + fit score`
     }
 };
 
